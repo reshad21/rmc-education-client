@@ -1,9 +1,12 @@
 import React from 'react';
+import { Fade } from 'react-reveal';
 
 const HeroSection = () => {
     return (
         <div>
-            <h3>HeroSection of the site</h3>
+            <Fade bottom>
+                <h1>React Reveal</h1>
+            </Fade>
         </div>
     );
 };
