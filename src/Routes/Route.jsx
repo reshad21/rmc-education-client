@@ -4,6 +4,7 @@ import Admin from "../Pages/Admin/Admin";
 import Blog from "../Pages/Blog/Blog";
 import Contact from "../Pages/Contact/Contact";
 import Home from "../Pages/Home/Home/Home";
+import CardDetail from './../Pages/CardDetail/CardDetail';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/blogs/:id',
+                element: <CardDetail></CardDetail>,
+                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`),
             },
             {
                 path: '/admin',
