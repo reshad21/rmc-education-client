@@ -16,7 +16,7 @@ const Admin = () => {
         }
         console.log(form, blogInfo);
 
-        fetch('http://localhost:5000/blogs', {
+        fetch('https://rmc-education-server.vercel.app/blogs', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',

@@ -22,7 +22,7 @@ const ContactForm = () => {
         }
         console.log(form, userInfo);
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://rmc-education-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

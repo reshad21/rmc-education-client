@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             {
                 path: '/blogs/:id',
                 element: <CardDetail></CardDetail>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`),
+                loader: ({ params }) => fetch(`https://rmc-education-server.vercel.app/blogs/${params.id}`),
             },
             {
                 path: '/admin',
