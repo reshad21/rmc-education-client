@@ -1,6 +1,45 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 
 const ContactForm = () => {
+    const handleContactForm = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const phoneNumber = form.phoneNumber.value;
+        const location = form.location.value;
+        const subject = form.subject.value;
+        const comment = form.comment.value;
+
+        const userInfo = {
+            phoneNumber,
+            location,
+            comment,
+            subject,
+            email,
+            name
+        }
+        console.log(form, userInfo);
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userInfo),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+        toast.success('Your Comment Successfully Send..!');
+        form.reset();
+    }
     return (
         <div>
             <div className="hero bg-base-200 px-32">
@@ -20,31 +59,33 @@ const ContactForm = () => {
                             <h1 className='text-2xl font-semibold text-center py-2'>Get in <span className='text-bold text-orange-500'>Touch</span></h1>
                             <div className="w-[50px] h-[3px] bg-orange-500 inline-block"></div>
                         </div>
-                        <form className="card-body">
+
+
+                        <form className="card-body" onSubmit={handleContactForm}>
                             <div className="grid sm:grid-cols-1 md:grid-cols-1  lg:grid-cols-2 gap-3">
                                 <div className="form-control">
-                                    <input type="text" placeholder="Your Name*" className="input input-bordered" />
+                                    <input type="text" name='name' placeholder="Your Name*" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
-                                    <input type="text" placeholder="Your@gmail.com*" className="input input-bordered" />
+                                    <input type="text" name='email' placeholder="Your@gmail.com*" className="input input-bordered" required />
                                 </div>
                             </div>
 
                             <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-3">
                                 <div className="form-control">
-                                    <input type="text" placeholder="Phone number" className="input input-bordered" />
+                                    <input type="text" name='phoneNumber' placeholder="Phone number" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
-                                    <input type="text" placeholder="Location" className="input input-bordered" />
+                                    <input type="text" name='location' placeholder="Location" className="input input-bordered" required />
                                 </div>
                             </div>
 
                             <div className="form-control">
-                                <input type="text" placeholder="Subject*" className="input input-bordered" />
+                                <input type="text" name='subject' placeholder="Subject*" className="input input-bordered" required />
                             </div>
 
                             <div className="form-control">
-                                <textarea className="textarea textarea-bordered" placeholder="write your query..*"></textarea>
+                                <textarea name='comment' className="textarea textarea-bordered" required placeholder="write your query..*"></textarea>
                             </div>
 
 
