@@ -29,7 +29,7 @@ const Navber = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link className="btn">Get a proposal</Link>
+                    <Link to='/admin' className="btn btn-primary px-9">Admin</Link>
                 </div>
             </div>
         </div>
